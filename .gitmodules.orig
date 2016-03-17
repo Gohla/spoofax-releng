@@ -5,7 +5,7 @@
 [submodule "mb-exec"]
   path = mb-exec
   url = https://github.com/metaborg/mb-exec.git
-  branch = units
+  branch = master
 [submodule "jsglr"]
   path = jsglr
   url = https://github.com/metaborg/jsglr.git
@@ -65,8 +65,12 @@
 [submodule "spoofax-eclipse"]
   path = spoofax-eclipse
   url = https://github.com/metaborg/spoofax-eclipse.git
+<<<<<<< HEAD
   branch = units
+=======
+  branch = master
 [submodule "spoofax-intellij"]
-  path = spoofax-intellij
-  url = https://github.com/metaborg/spoofax-intellij.git
-  branch = units
+	path = spoofax-intellij
+	url = https://github.com/metaborg/spoofax-intellij.git
+	branch = develop
+>>>>>>> master
