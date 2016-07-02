@@ -14,17 +14,18 @@ node {
   ])
 
   stage 'gen mvn settings'
-  sh './b gen-mvn-settings -SUyd settings.xml'
+  def mvnSettingsFile = "${pwd()}settings.xml"
+  sh "./b gen-mvn-settings -SUyd ${$mvnSettingsFile}"
 
   stage 'poms'
-  sh './b build --settings settings.xml poms'
+  sh "./b build --settings ${$mvnSettingsFile} poms"
 
   stage 'java'
-  sh './b build --settings settings.xml java'
+  sh "./b build --settings ${$mvnSettingsFile} java"
 
   stage 'strategoxt'
-  sh './b build --settings settings.xml strategoxt'
+  sh "./b build --settings ${$mvnSettingsFile} strategoxt"
 
   stage 'java'
-  sh './b build --settings settings.xml java'
+  sh "./b build --settings ${$mvnSettingsFile} java"
 }
