@@ -1,10 +1,18 @@
-stage 'checkout'
 node {
-  checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', depth: 0, noTags: false, reference: '', shallow: false, timeout: 60], [$class: 'CheckoutOption', timeout: 60], [$class: 'SubmoduleOption', disableSubmodules: false, recursiveSubmodules: true, reference: '', trackingSubmodules: true], [$class: 'CleanCheckout'], [$class: 'CleanBeforeCheckout']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Gohla/spoofax-releng.git']]])
-  sh './b'
-  stage 'after checkout'
-  echo 'inside node'
-}
+  stage 'checkout'
+  checkout([
+    $class: 'GitSCM',
+    branches: [[name: env.BRANCH_NAME]],
+    extensions: [
+      [$class: 'CloneOption', timeout: 60],
+      [$class: 'CheckoutOption', timeout: 60],
+      [$class: 'SubmoduleOption', recursiveSubmodules: true, trackingSubmodules: true, timeout: 60],
+      [$class: 'CleanCheckout'],
+      [$class: 'CleanBeforeCheckout']
+    ],
+    userRemoteConfigs: [[refspec: "+refs/heads/${env.BRANCH_NAME}:refs/remotes/origin/${env.BRANCH_NAME}", url: 'https://github.com/Gohla/spoofax-releng.git']]
+  ])
 
-stage 'after node'
-echo 'after node'
+  stage 'test'
+  echo 'hello world'
+}
