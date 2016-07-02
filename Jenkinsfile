@@ -13,6 +13,15 @@ node {
     userRemoteConfigs: [[refspec: "+refs/heads/${env.BRANCH_NAME}:refs/remotes/origin/${env.BRANCH_NAME}", url: 'https://github.com/Gohla/spoofax-releng.git']]
   ])
 
-  stage 'test'
-  echo 'hello world'
+  stage 'poms'
+  sh './b build poms'
+
+  stage 'java'
+  sh './b build java'
+
+  stage 'strategoxt'
+  sh './b build strategoxt'
+
+  stage 'java'
+  sh './b build java'
 }
