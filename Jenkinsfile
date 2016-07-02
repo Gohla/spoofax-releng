@@ -15,17 +15,17 @@ node {
 
   stage 'gen mvn settings'
   def mvnSettingsFile = "${pwd()}settings.xml"
-  sh "./b gen-mvn-settings -SUyd ${$mvnSettingsFile}"
+  sh "./b gen-mvn-settings -SUyd ${mvnSettingsFile}"
 
   stage 'poms'
-  sh "./b build --settings ${$mvnSettingsFile} poms"
+  sh "./b build --settings ${mvnSettingsFile} poms"
 
   stage 'java'
-  sh "./b build --settings ${$mvnSettingsFile} java"
+  sh "./b build --settings ${mvnSettingsFile} java"
 
   stage 'strategoxt'
-  sh "./b build --settings ${$mvnSettingsFile} strategoxt"
+  sh "./b build --settings ${mvnSettingsFile} strategoxt"
 
   stage 'java'
-  sh "./b build --settings ${$mvnSettingsFile} java"
+  sh "./b build --settings ${mvnSettingsFile} java"
 }
