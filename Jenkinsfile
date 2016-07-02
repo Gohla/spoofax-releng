@@ -1,5 +1,9 @@
 stage 'checkout'
-sh 'git submodule update --init --remote --recursive'
+node {
+  sh 'git submodule update --init --remote --recursive'
+  stage 'after checkout'
+  echo 'inside node'
+}
 
-stage 'test'
-echo 'hello world'
+stage 'after node'
+echo 'after node'
