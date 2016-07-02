@@ -1,3 +1,8 @@
+properties [
+  [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: '3']],
+  [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/Gohla/spoofax-releng/']
+]
+
 node {
   stage 'checkout'
   checkout([
@@ -20,8 +25,8 @@ node {
   stage 'poms'
   sh "./b build --settings ${mvnSettingsFile} poms"
 
-  stage 'java'
-  sh "./b build --settings ${mvnSettingsFile} java"
+  stage 'jars'
+  sh "./b build --settings ${mvnSettingsFile} jars"
 
   stage 'strategoxt'
   sh "./b build --settings ${mvnSettingsFile} strategoxt"
