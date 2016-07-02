@@ -1,3 +1,8 @@
+properties([
+  [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: '3']],
+  [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/Gohla/spoofax-releng/']
+])
+
 node {
   stage 'checkout'
   checkout([
