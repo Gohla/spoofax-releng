@@ -24,7 +24,7 @@ node {
 
   def buildStage = { String id ->
     stage id
-    sh "./b build -a dist --settings ${mvnSettingsFile} ${id}"
+    sh "./b build -e -a dist --settings ${mvnSettingsFile} ${id}"
   }
 
   buildStage('poms')
