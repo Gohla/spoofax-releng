@@ -19,12 +19,23 @@ node {
 
   def buildStage = { String id ->
     stage id
-    sh "./b build --settings ${mvnSettingsFile} ${id}"
+    sh "./b build -a dist --settings ${mvnSettingsFile} ${id}"
   }
 
-  buildStage("poms")
-  buildStage("jars")
-  buildStage("strategoxt")
-  buildStage("java")
-  buildStage("java-uber")
+  buildStage('poms')
+  buildStage('jars')
+  buildStage('strategoxt')
+  buildStage('java')
+  buildStage('java-uber')
+  buildStage('language-prereqs')
+  buildStage('languages')
+  buildStage('dynsem')
+  buildStage('spt')
+  buildStage('eclipse-prereqs')
+  buildStage('eclipse')
+  buildStage('intellij-prereqs')
+  buildStage('intellij')
+
+  stage 'archive'
+  archive 'dist/**/*'
 }
