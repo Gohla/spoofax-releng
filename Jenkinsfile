@@ -1,8 +1,4 @@
-properties [
-  [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3']],
-  [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/Gohla/spoofax-releng/']
-]
-
+properties [[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3']]]
 node {
   stage 'checkout'
   checkout([
