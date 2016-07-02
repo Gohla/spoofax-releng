@@ -1,6 +1,6 @@
 properties [
-  [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: '3']],
-  [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/Gohla/spoofax-releng/']
+  [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3']],
+  [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/Gohla/spoofax-releng/']
 ]
 
 node {
