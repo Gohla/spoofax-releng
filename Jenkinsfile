@@ -14,8 +14,8 @@ node {
   ])
 
   stage 'gen mvn settings'
-  def mvnSettingsFile = "${pwd()}settings.xml"
-  sh "./b gen-mvn-settings -SUyd ${mvnSettingsFile}"
+  def mvnSettingsFile = "${pwd()}/settings.xml"
+  sh "./b gen-mvn-settings -Uyd ${mvnSettingsFile}"
 
   stage 'poms'
   sh "./b build --settings ${mvnSettingsFile} poms"
