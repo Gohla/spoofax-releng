@@ -1,4 +1,3 @@
-properties [[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3']]]
 node {
   stage 'checkout'
   checkout([
@@ -18,15 +17,14 @@ node {
   def mvnSettingsFile = "${pwd()}/settings.xml"
   sh "./b gen-mvn-settings -Uyd ${mvnSettingsFile}"
 
-  stage 'poms'
-  sh "./b build --settings ${mvnSettingsFile} poms"
+  def buildStage(String id) {
+    stage id
+    sh "./b build --settings ${mvnSettingsFile} ${id}"
+  }
 
-  stage 'jars'
-  sh "./b build --settings ${mvnSettingsFile} jars"
-
-  stage 'strategoxt'
-  sh "./b build --settings ${mvnSettingsFile} strategoxt"
-
-  stage 'java'
-  sh "./b build --settings ${mvnSettingsFile} java"
+  buildStage("poms")
+  buildStage("jars")
+  buildStage("strategoxt")
+  buildStage("java")
+  buildStage("java-uber")
 }
