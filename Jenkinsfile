@@ -17,7 +17,7 @@ node {
   def mvnSettingsFile = "${pwd()}/settings.xml"
   sh "./b gen-mvn-settings -Uyd ${mvnSettingsFile}"
 
-  def buildStage(String id) {
+  def buildStage = { String id ->
     stage id
     sh "./b build --settings ${mvnSettingsFile} ${id}"
   }
